@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "elara-ring-landing",
+  "account_id": "fae122f46d0ce5c26ae43fb01c14f9f8",
+  "main": "./dist/server/index.js",
+  "compatibility_date": "2026-08-15",
+  "assets": {
+    "directory": "./dist/client",
+    "binding": "ASSETS"
+  },
+  "routes": [
+    {
+      "pattern": "ring.chiri.space",
+      "custom_domain": true
+    }
+  ]
+}
