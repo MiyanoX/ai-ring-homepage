@@ -1,5 +1,48 @@
 # ELARA One multilingual implementation — Design QA
 
+## Current P1 verification — Issue #9 (2026-08-29)
+
+This section supersedes the historical notes below for the current P1 Japanese purchase-validation page. The browser run used the local Vite preview at `http://127.0.0.1:5173/` in the Codex in-app browser; no production deployment was performed.
+
+### Viewports and screenshots
+
+- Desktop: 1440 × 960 CSS pixels. `/ja/` uses one full-width hero image with a transparent floating header and transparent hero copy background; `document.scrollWidth = 1440`.
+- Mobile: 390 × 844 CSS pixels. `/ja/` puts the image before the copy, keeps `document.scrollWidth = 390`, and shows the 66px fixed sticky CTA. Finish buttons remain two-column and the CTA touch target is at least 44px high.
+- Key captures: [Japanese desktop](artifacts/qa-ja-desktop-1440x960.png), [Japanese mobile](artifacts/qa-ja-mobile-390x844.png), [English desktop](artifacts/qa-en-desktop-1440x960.png), [English mobile](artifacts/qa-en-mobile-390x844.png), [Chinese desktop](artifacts/qa-zh-desktop-1440x960.png), [Chinese mobile](artifacts/qa-zh-mobile-390x844.png).
+- The reviewed P1 hero and checked-in P1 assets show hands/ring only; no visible face or reflected face, no image text overlay, and the ring remains readable.
+
+### Interaction and accessibility evidence
+
+- Finish selection: Mirror Gold updates both Finish controls and the purchase summary while keeping `¥34,800（税込）` and the size as `US 5–12` pending Sizing Kit confirmation.
+- Engraving: synthetic QA input `A•1` renders `「A•1」を刻印（無料）`; no external submission occurs.
+- FAQ: the first native `details` item opens and exposes its answer.
+- CTA/form: Hero CTA scrolls to `#preview` and focuses `#preview-email`; invalid email shows the localized error, valid `qa@example.com` shows the explicitly local preview state, and reset clears the value and returns focus to the field in all three locales.
+- `/ja/` declares `landing_view`/`reserve_click` attributes only. The P1 page and PreviewForm contain no `fetch(` or `localStorage` calls; funnel event metadata rejects PII keys. No payment-success or reservation-success state is rendered locally.
+- Browser console logs for the final page were empty at `error`, `warn`, and `warning` levels.
+
+### Locale and metadata regression
+
+| Route | Desktop / mobile width | `html[lang]` | Canonical | Active locale | Forms | Result |
+| --- | --- | --- | --- | --- | ---: | --- |
+| `/en/` | 1440 / 390 | `en` | `/en/` | EN | 1 | pass |
+| `/zh/` | 1440 / 390 | `zh-CN` | `/zh/` | 中 | 1 | pass |
+| `/ja/` | 1440 / 390 | `ja` | `/ja/` | 日 | 1 | pass |
+
+All three routes expose the four expected alternates (`en`, `zh-CN`, `ja`, `x-default`). The `/zh/#purchase` → `/ja/#purchase` language link preserved the hash and rendered Japanese content. Existing English and Chinese interaction surfaces remain available; only the explicitly requested Japanese route uses the P1 page.
+
+### Automated verification
+
+- `npm test`: **30 passed, 0 failed** (content, locale, asset, page, product, risk, funnel, and waitlist contracts).
+- `npm run build`: **passed**; emitted `dist/client/index.html`, `dist/server/index.js`, and `dist/.openai/hosting.json`.
+- `npm run test:sites`: **5 passed, 0 failed**.
+- Build output was restored before commit so tracked `dist` hashes remain unchanged; the evidence above is local-build proof, not production proof.
+
+### Remaining risks
+
+- P1 remains local-only while the reservation deposit, refund terms, delivery timing, operator disclosure, payment, order storage, and analytics owners are pending. Do not describe this branch as a live reservation or payment funnel.
+- Final health-feature specifications, engraving constraints, and sizing/production operations still require product/legal clearance before production connection.
+- P3 polish only: self-host the selected serif font if exact cross-platform typography becomes a release requirement.
+
 ## Comparison target
 
 - Source visual truth: references/landing-page/elara-morning-ritual.png
@@ -20,7 +63,7 @@ The source is the selected ELARA landing-page visual target. The implementation 
 
 ## States and browser evidence
 
-- /en/ and /ja/ retain the legacy page composition. `/zh/` renders the dedicated six-block Chinese landing with the expected html[lang], title, description, canonical URL, four alternate links (en, zh-CN, ja, x-default), and one active language link.
+- `/en/` retains the legacy page composition, `/zh/` renders the dedicated six-block Chinese landing, and `/ja/` now renders the dedicated P1 Base Ring purchase-validation page; all three expose the expected html[lang], title, description, canonical URL, four alternate links (en, zh-CN, ja, x-default), and one active language link.
 - / followed the stored/browser locale preference; unsupported /fr/ normalized to /en/.
 - Switching from /zh/#rituals to Japanese preserved /ja/#rituals and rendered Japanese content.
 - Invalid email and valid local-preview submission were exercised in all three locales. Error messages, success messages, and reset controls were localized; reset returned focus to the email field. No network submission or persistence occurs.
@@ -68,8 +111,8 @@ The source is the selected ELARA landing-page visual target. The implementation 
 - [x] Chinese design targets, ¥59,500 起 concept price, Standard/Design options, finishes, engraving, and Gift/NFC path are visible and locally interactive.
 - [x] Technology, prototype-validation, and Gift visuals use hand-only generated assets with descriptive alternative text.
 - [x] Browser console has no errors or warnings.
-- [x] npm test: 17 passed, 0 failed.
+- [x] npm test: 30 passed, 0 failed.
 - [x] npm run build: passed and emitted Sites artifacts.
-- [x] npm run test:sites: 4 passed, 0 failed.
+- [x] npm run test:sites: 5 passed, 0 failed.
 
 final result: passed
