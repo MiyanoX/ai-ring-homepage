@@ -3297,6 +3297,24 @@ p {
   margin-top: 18px;
 }
 
+.p1-risk-legal {
+  display: grid;
+  gap: 10px;
+  max-width: 36rem;
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid var(--p1-line);
+  color: var(--p1-muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.p1-risk-legal strong {
+  color: var(--p1-ink);
+  font-size: 12px;
+  font-weight: 600;
+}
+
 .p1-risk-media {
   min-height: 520px;
   margin: 0;
