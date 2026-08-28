@@ -48,6 +48,11 @@ const GIFT_IMAGE = {
   position: "60% 50%",
 };
 
+const P1_HERO_IMAGE = HERO_IMAGE;
+const P1_PROOF_IMAGE = FINISHES_IMAGE;
+const P1_HEALTH_IMAGE = INSIGHT_IMAGE;
+const P1_EDITION_IMAGE = FINISHES_IMAGE;
+
 const NAV_HREFS = ["#rituals", "#insight", "#finishes"];
 const RITUAL_INDEXES = ["01", "02", "03"];
 
@@ -722,6 +727,192 @@ export const pageContentByLocale = {
       note:
         "ELARA One はコンセプト製品であり、医療機器ではありません。このページはブランドと製品デザインの紹介のみを目的としています。",
       legal: "コンセプトスタディ · 東京 · 2026",
+    },
+    p1: {
+      nav: [
+        { label: "商品について", href: "#proof" },
+        { label: "静かなテクノロジー", href: "#health" },
+        { label: "First Edition", href: "#edition" },
+        { label: "仕上げ", href: "#finishes" },
+        { label: "予約", href: "#purchase" },
+      ],
+      hero: {
+        eyebrow: "ELARA One · P1 Base Ring",
+        title: "毎日に似合う、静かなスマートリング。",
+        englishTitle: "It starts with a ring.",
+        description:
+          "まずは、毎日つけたい一枚。細身のシルエットと落ち着いた仕上げの内側に、あなたの一日をそっと見つめるための技術を収めました。",
+        width: "6.0 mm",
+        innerRing: "チタン内リング",
+        edition: "First Edition｜無料刻印",
+        price: "¥34,800（税込）",
+        priceNote: "P1 コンセプト価格 · 5色 / US 5–12",
+        primaryAction: "予約する",
+        secondaryAction: "商品を見る",
+        localOnlyNote:
+          "現在はコンセプト予約フローのプレビューです。実際の注文や決済は作成されません。",
+        image: withImage(
+          P1_HERO_IMAGE,
+          "朝の光のなかでシャンパンゴールドの ELARA One を着けた手元",
+        ),
+      },
+      proof: {
+        eyebrow: "01 / 商品の証明",
+        title: "6 mm とチタン内リングを、数字だけで終わらせない。",
+        body:
+          "指にのせたときの細さ、内側の素材、表面の光。毎日つけるものだからこそ、スペックを触れられる印象へ置き換えて伝えます。",
+        items: [
+          {
+            label: "PROPORTION",
+            title: "6.0 mm の幅",
+            copy: "手持ちのジュエリーと並べても、日常のスタイルを邪魔しない細身の設計。",
+          },
+          {
+            label: "INNER RING",
+            title: "チタン内リング",
+            copy: "肌に触れる内側にチタンを採用。外側の仕上げとは分けて、素材の範囲を明確に伝えます。",
+          },
+          {
+            label: "FINISH",
+            title: "5つの仕上げ",
+            copy: "マットとミラー、黒・銀・ゴールド系から、いつもの装いに合う一色を選べます。",
+          },
+        ],
+        image: withImage(
+          P1_PROOF_IMAGE,
+          "異なる仕上げの ELARA One リングを並べ、細身の輪郭を見せるプロダクトカット",
+        ),
+      },
+      health: {
+        eyebrow: "02 / 静かなテクノロジー",
+        title: "先進性は、あなたが機械に合わせることではない。",
+        body:
+          "光学センサーや振動の仕組みは、身につける人の生活を中断しないためにあります。複雑さは内側に置き、必要な気づきだけを日常へ返します。",
+        capabilities: [
+          {
+            label: "SENSING",
+            title: "三色光 PPG",
+            copy: "身体のリズムを知るための光学センシング。公開できる仕様は確認後に更新します。",
+          },
+          {
+            label: "RESPONSE",
+            title: "振動でそっと知らせる",
+            copy: "画面を増やすのではなく、必要な場面に小さな合図を返す設計です。",
+          },
+          {
+            label: "ENCLOSURE",
+            title: "6 mm に収める",
+            copy: "小型化の制約を、毎日つけられる自然な輪郭へ変えていきます。",
+          },
+        ],
+        disclosure:
+          "健康に関する機能と最終仕様は確認中です。本ページの App 画面はコンセプト表示であり、医療上の判断を行うものではありません。",
+        image: withImage(
+          P1_HEALTH_IMAGE,
+          "石の天板に置かれた ELARA アプリのコンセプト画面とリング",
+        ),
+      },
+      edition: {
+        eyebrow: "03 / First Edition",
+        title: "最初の一枚に、あなたの言葉を。",
+        body:
+          "P1 の予約者には、最初に届ける一枚の内側へ刻印を添えます。値引きではなく、身につける理由を自分の言葉で残すための特典です。",
+        examples: ["自分のイニシャル", "始まりの日", "短いひとこと"],
+        image: withImage(
+          P1_EDITION_IMAGE,
+          "ELARA One の内側に刻印を入れるイメージを見せる手元のプロダクトカット",
+        ),
+        disclosure:
+          "刻印の文字数、確認タイミング、使用できる文字は最終仕様の確認後に確定します。",
+      },
+      finishes: {
+        eyebrow: "04 / Choose your finish",
+        title: "色は、説明よりも選ぶために。",
+        body:
+          "5つの仕上げを同じ条件で見比べて、いつもの服と手元に合うものを選びます。P1 ではすべて同価格です。",
+        options: [
+          { id: "matte-black", name: "マットブラック", englishName: "Matte Black" },
+          { id: "mirror-silver", name: "ミラーシルバー", englishName: "Mirror Silver" },
+          { id: "matte-silver", name: "マットシルバー", englishName: "Matte Silver" },
+          { id: "mirror-gold", name: "ミラーゴールド", englishName: "Mirror Gold" },
+          {
+            id: "mirror-rose-gold",
+            name: "ミラーローズゴールド",
+            englishName: "Mirror Rose Gold",
+          },
+        ],
+        selectionNote: "5色同価格 · 日本国内送料込み",
+        image: withImage(
+          FINISHES_IMAGE,
+          "ELARA One の仕上げを比較するコンセプトプロダクトカット",
+        ),
+      },
+      risk: {
+        eyebrow: "05 / Sizing & delivery",
+        title: "サイズは、試してから決める。",
+        body:
+          "最初から指輪のサイズを当てる必要はありません。予約後に Sizing Kit を届け、試着の結果をもとに最終サイズを確認します。",
+        sizeRange: "US 5–12",
+        depositPending: true,
+        depositLabel: "予約金：最終確認中（候補 ¥3,000）",
+        deliveryPending: true,
+        deliveryLabel: "お届け時期：生産計画の確認後にご案内",
+        steps: [
+          "Base Ring と仕上げを選ぶ",
+          "可退の予約金を支払う",
+          "Sizing Kit で試着する",
+          "最終サイズと刻印を確認する",
+          "生産計画とお届け時期をご案内する",
+        ],
+        refund:
+          "正式に生産へ入る前は全額返金。組み合わせの調整が必要な場合は、待つ・色を変える・返金から選べるようにします。",
+        disclosure:
+          "予約金、返金条件、お届け時期は運用・生産条件の確認中です。確定前は予約を完了できません。",
+      },
+      specs: {
+        eyebrow: "06 / Specs & FAQ",
+        title: "最後に、確認したいこと。",
+        items: [
+          { label: "幅", value: "6.0 mm（目標値）" },
+          { label: "内側", value: "チタン内リング" },
+          { label: "サイズ", value: "US 5–12" },
+          { label: "価格", value: "¥34,800（税込）" },
+          { label: "仕上げ", value: "5色・同価格" },
+        ],
+        faq: [
+          {
+            question: "最終サイズはいつ決めますか？",
+            answer: "予約後に Sizing Kit を試着してから確認します。最初の予約時にサイズを確定する必要はありません。",
+          },
+          {
+            question: "予約金はいくらですか？",
+            answer: "候補額は ¥3,000 ですが、正式な金額は運用条件の確認後にページへ反映します。",
+          },
+          {
+            question: "今すぐ商品が届きますか？",
+            answer: "現在はコンセプト段階です。生産計画とお届け時期が確定した後に、正式な案内を行います。",
+          },
+        ],
+      },
+      purchase: {
+        eyebrow: "07 / Reserve",
+        title: "P1 Base Ring を、最初の一枚に。",
+        body:
+          "仕上げを選び、刻印をイメージする。サイズは Sizing Kit のあとで決める。現在はこの流れを確認するためのローカルプレビューです。",
+        productName: "ELARA One · Base Ring",
+        price: "¥34,800（税込）",
+        priceNote: "5色同価格 · 日本国内送料込み",
+        finishLabel: "仕上げ",
+        sizeLabel: "サイズ",
+        sizeNote: "US 5–12 · 最終サイズは Sizing Kit 後に確定",
+        engravingLabel: "First Edition 無料刻印",
+        engravingPlaceholder: "刻印を入力（コンセプトプレビュー）",
+        engravingHint: "文字数と対応文字は最終確認中",
+        submitLabel: "予約フローを試す",
+        localOnlyNote:
+          "ローカルプレビューのみ。ここではメールアドレスも選択内容も送信・保存されず、実際の注文は作成されません。",
+        stickyCta: "¥34,800｜First Edition 無料刻印｜予約する",
+      },
     },
   },
 };

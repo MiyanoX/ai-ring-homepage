@@ -32,7 +32,12 @@ function collectStrings(value, path = "content") {
 test("exposes exactly the three supported locale records", () => {
   assert.deepEqual(Object.keys(pageContentByLocale).sort(), [...LOCALES].sort());
   for (const locale of LOCALES) {
-    const expectedKeys = locale === "zh" ? [...REQUIRED_KEYS, "landing"] : REQUIRED_KEYS;
+    const expectedKeys =
+      locale === "zh"
+        ? [...REQUIRED_KEYS, "landing"]
+        : locale === "ja"
+          ? [...REQUIRED_KEYS, "p1"]
+          : REQUIRED_KEYS;
     assert.deepEqual(Object.keys(pageContentByLocale[locale]).sort(), [...expectedKeys].sort());
   }
 });
@@ -64,6 +69,45 @@ test("provides the complete Chinese six-block landing contract", () => {
 test("keeps the Chinese landing content exclusive to the Chinese record", () => {
   assert.equal("landing" in pageContentByLocale.en, false);
   assert.equal("landing" in pageContentByLocale.ja, false);
+});
+
+test("provides the Japanese P1 Base Ring content contract", () => {
+  const p1 = pageContentByLocale.ja.p1;
+
+  assert.ok(p1, "Japanese P1 content must exist");
+  assert.deepEqual(Object.keys(p1), [
+    "nav",
+    "hero",
+    "proof",
+    "health",
+    "edition",
+    "finishes",
+    "risk",
+    "specs",
+    "purchase",
+  ]);
+  assert.equal(p1.hero.price, "¥34,800（税込）");
+  assert.equal(p1.hero.width, "6.0 mm");
+  assert.equal(p1.hero.innerRing, "チタン内リング");
+  assert.equal(p1.hero.edition, "First Edition｜無料刻印");
+  assert.deepEqual(
+    p1.finishes.options.map((option) => option.id),
+    ["matte-black", "mirror-silver", "matte-silver", "mirror-gold", "mirror-rose-gold"],
+  );
+  assert.equal(p1.risk.sizeRange, "US 5–12");
+  assert.equal(p1.risk.depositPending, true);
+  assert.equal(p1.risk.deliveryPending, true);
+  assert.match(p1.purchase.localOnlyNote, /ローカル|概念/);
+});
+
+test("keeps P1 claims honest and Japanese content independent", () => {
+  const p1 = pageContentByLocale.ja.p1;
+  const p1Strings = collectStrings(p1).map(({ value }) => value).join(" ");
+
+  assert.doesNotMatch(p1Strings, /世界一|世界最細|No\.?1|臨床|治療|診断/);
+  assert.match(p1Strings, /コンセプト|未定|確認中|予定/);
+  assert.equal("p1" in pageContentByLocale.en, false);
+  assert.equal("p1" in pageContentByLocale.zh, false);
 });
 
 
