@@ -3518,6 +3518,12 @@ p {
   font-size: 11px;
 }
 
+.p1-engraving-status {
+  color: var(--p1-plum);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
 .p1-purchase-actions {
   display: flex;
   align-items: center;

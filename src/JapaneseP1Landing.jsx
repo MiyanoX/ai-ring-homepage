@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 
 import { PreviewForm } from "./PreviewForm.jsx";
 import { getLocaleNavigationLinks } from "./i18n/locale.js";
+import { buildP1PurchaseSummary } from "./lib/p1-product.js";
 
 function P1Header({ content, currentHash, locale, onLocaleSelect, onPreview }) {
   const p1 = content.p1;
@@ -323,7 +324,7 @@ function P1Specs({ p1 }) {
 }
 
 function P1Purchase({ p1, selectedFinish, setSelectedFinish, engraving, setEngraving, onPreview }) {
-  const selectedOption = p1.finishes.options.find((option) => option.id === selectedFinish) ?? p1.finishes.options[0];
+  const summary = buildP1PurchaseSummary({ p1, selectedFinish, engraving });
 
   return (
     <section id="purchase" className="p1-section p1-purchase" aria-labelledby="p1-purchase-title">
@@ -335,12 +336,12 @@ function P1Purchase({ p1, selectedFinish, setSelectedFinish, engraving, setEngra
       <div className="p1-purchase-card">
         <div className="p1-purchase-summary">
           <div>
-            <span>{p1.purchase.productName}</span>
-            <strong>{selectedOption.name}</strong>
+            <span>{summary.productName}</span>
+            <strong>{summary.finish}</strong>
           </div>
           <div className="p1-purchase-price">
             <span>{p1.purchase.priceNote}</span>
-            <strong>{p1.purchase.price}</strong>
+            <strong>{summary.price}</strong>
           </div>
         </div>
         <div className="p1-purchase-field">
@@ -354,7 +355,7 @@ function P1Purchase({ p1, selectedFinish, setSelectedFinish, engraving, setEngra
         </div>
         <div className="p1-purchase-field p1-size-field">
           <span className="p1-field-label">{p1.purchase.sizeLabel}</span>
-          <strong>{p1.risk.sizeRange}</strong>
+          <strong>{summary.sizeRange}</strong>
           <small>{p1.purchase.sizeNote}</small>
         </div>
         <label className="p1-engraving-field" htmlFor="p1-engraving">
@@ -369,6 +370,9 @@ function P1Purchase({ p1, selectedFinish, setSelectedFinish, engraving, setEngra
             onChange={(event) => setEngraving(event.target.value)}
           />
           <small>{p1.purchase.engravingHint}</small>
+          <span className="p1-engraving-status">
+            {summary.engraving ? `「${summary.engraving}」を刻印（無料）` : "無料刻印を追加できます"}
+          </span>
         </label>
         <div className="p1-purchase-actions">
           <P1Button onClick={onPreview}>{p1.purchase.submitLabel}</P1Button>

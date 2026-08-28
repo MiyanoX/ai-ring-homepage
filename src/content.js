@@ -863,6 +863,7 @@ export const pageContentByLocale = {
         body:
           "最初から指輪のサイズを当てる必要はありません。予約後に Sizing Kit を届け、試着の結果をもとに最終サイズを確認します。",
         sizeRange: "US 5–12",
+        sizeStatus: "Sizing Kit 後に確定",
         depositPending: true,
         depositLabel: "予約金：最終確認中（候補 ¥3,000）",
         deliveryPending: true,
