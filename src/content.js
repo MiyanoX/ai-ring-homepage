@@ -870,7 +870,7 @@ export const pageContentByLocale = {
         deliveryLabel: "お届け時期：生産計画の確認後にご案内",
         steps: [
           "Base Ring と仕上げを選ぶ",
-          "可退の予約金を支払う",
+          "返金可能な予約金を支払う",
           "Sizing Kit で試着する",
           "最終サイズと刻印を確認する",
           "生産計画とお届け時期をご案内する",
