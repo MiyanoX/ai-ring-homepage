@@ -49,9 +49,19 @@ const GIFT_IMAGE = {
 };
 
 const P1_HERO_IMAGE = HERO_IMAGE;
-const P1_PROOF_IMAGE = FINISHES_IMAGE;
+const P1_PROOF_IMAGE = {
+  src: "/assets/elara/p1-finishes.png",
+  position: "50% 54%",
+};
 const P1_HEALTH_IMAGE = INSIGHT_IMAGE;
-const P1_EDITION_IMAGE = FINISHES_IMAGE;
+const P1_EDITION_IMAGE = {
+  src: "/assets/elara/p1-engraving-macro.png",
+  position: "50% 54%",
+};
+const P1_RISK_IMAGE = {
+  src: "/assets/elara/p1-sizing-kit.png",
+  position: "64% 52%",
+};
 
 const NAV_HREFS = ["#rituals", "#insight", "#finishes"];
 const RITUAL_INDEXES = ["01", "02", "03"];
@@ -843,7 +853,7 @@ export const pageContentByLocale = {
         ],
         selectionNote: "5色同価格 · 日本国内送料込み",
         image: withImage(
-          FINISHES_IMAGE,
+          P1_PROOF_IMAGE,
           "ELARA One の仕上げを比較するコンセプトプロダクトカット",
         ),
       },
@@ -868,6 +878,10 @@ export const pageContentByLocale = {
           "正式に生産へ入る前は全額返金。組み合わせの調整が必要な場合は、待つ・色を変える・返金から選べるようにします。",
         disclosure:
           "予約金、返金条件、お届け時期は運用・生産条件の確認中です。確定前は予約を完了できません。",
+        image: withImage(
+          P1_RISK_IMAGE,
+          "Sizing Kit でリングのサイズを確認する手元と複数の試着リング",
+        ),
       },
       specs: {
         eyebrow: "06 / Specs & FAQ",
