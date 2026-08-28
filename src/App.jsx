@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { ChineseLanding } from "./ChineseLanding.jsx";
 import { pageContentByLocale } from "./content.js";
+import { JapaneseP1Landing } from "./JapaneseP1Landing.jsx";
 import { PreviewForm } from "./PreviewForm.jsx";
 import {
   DEFAULT_LOCALE,
@@ -350,7 +351,16 @@ export function App() {
       <a className="skip-link" href="#main-content">
         {content.ui.skipToContent}
       </a>
-      {locale === "zh" ? (
+      {locale === "ja" ? (
+        <JapaneseP1Landing
+          content={content}
+          currentHash={currentHash}
+          locale={locale}
+          onLocaleSelect={handleLocaleSelect}
+          onPreview={focusPreview}
+          previewInputRef={previewInputRef}
+        />
+      ) : locale === "zh" ? (
         <ChineseLanding
           content={content}
           currentHash={currentHash}
