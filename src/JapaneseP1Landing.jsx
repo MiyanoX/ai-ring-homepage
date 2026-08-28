@@ -50,9 +50,14 @@ function P1Eyebrow({ children, light = false }) {
   return <p className={`p1-eyebrow${light ? " p1-eyebrow-light" : ""}`}>{children}</p>;
 }
 
-function P1Button({ children, onClick, variant = "dark", type = "button" }) {
+function P1Button({ children, onClick, variant = "dark", type = "button", dataEvent }) {
   return (
-    <button className={`p1-button p1-button-${variant}`} type={type} onClick={onClick}>
+    <button
+      className={`p1-button p1-button-${variant}`}
+      type={type}
+      onClick={onClick}
+      data-funnel-event={dataEvent}
+    >
       {children}
     </button>
   );
@@ -116,7 +121,9 @@ function P1Hero({ p1, onPreview }) {
         </div>
         <p className="p1-edition-chip">{p1.hero.edition}</p>
         <div className="p1-hero-actions">
-          <P1Button onClick={onPreview}>{p1.hero.primaryAction}</P1Button>
+          <P1Button onClick={onPreview} dataEvent="reserve_click">
+            {p1.hero.primaryAction}
+          </P1Button>
           <a className="p1-text-link" href="#proof">
             {p1.hero.secondaryAction}
           </a>
@@ -380,7 +387,9 @@ function P1Purchase({ p1, selectedFinish, setSelectedFinish, engraving, setEngra
           </span>
         </label>
         <div className="p1-purchase-actions">
-          <P1Button onClick={onPreview}>{p1.purchase.submitLabel}</P1Button>
+          <P1Button onClick={onPreview} dataEvent="reserve_click">
+            {p1.purchase.submitLabel}
+          </P1Button>
           <span>{p1.purchase.localOnlyNote}</span>
         </div>
       </div>
@@ -435,7 +444,7 @@ export function JapaneseP1Landing({
         onLocaleSelect={onLocaleSelect}
         onPreview={onPreview}
       />
-      <main id="main-content" className="p1-page">
+      <main id="main-content" className="p1-page" data-funnel-event="landing_view">
         <P1Hero p1={p1} onPreview={onPreview} />
         <P1Proof p1={p1} />
         <P1Health p1={p1} />
@@ -455,7 +464,9 @@ export function JapaneseP1Landing({
       </main>
       <div className="p1-sticky-cta">
         <span>{p1.purchase.stickyCta}</span>
-        <P1Button onClick={onPreview}>{p1.purchase.submitLabel}</P1Button>
+        <P1Button onClick={onPreview} dataEvent="reserve_click">
+          {p1.purchase.submitLabel}
+        </P1Button>
       </div>
       <P1Footer content={content} />
     </div>
