@@ -9,7 +9,7 @@
     "deploy:cloudflare": "npm run build && WRANGLER_LOG_PATH=/private/tmp/elara-wrangler.log wrangler deploy",
     "deploy:cloudflare:dry-run": "npm run build && WRANGLER_LOG_PATH=/private/tmp/elara-wrangler.log wrangler deploy --dry-run",
     "preview": "vite preview",
-    "test": "node --test tests/waitlist.test.mjs tests/locale.test.mjs tests/content.test.mjs",
+    "test": "node --test tests/waitlist.test.mjs tests/locale.test.mjs tests/content.test.mjs tests/p1-assets.test.mjs tests/japanese-page.test.mjs tests/p1-product.test.mjs tests/p1-risk.test.mjs tests/p1-funnel.test.mjs",
     "test:sites": "node --test tests/sites-worker.test.mjs"
   },
   "dependencies": {
