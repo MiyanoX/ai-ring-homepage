@@ -281,6 +281,11 @@ function P1Risk({ p1 }) {
         </ol>
         <p className="p1-refund-note">{p1.risk.refund}</p>
         <p className="p1-disclosure">{p1.risk.disclosure}</p>
+        <div className="p1-risk-legal">
+          <strong>{p1.risk.operator}</strong>
+          <p>{p1.risk.privacy}</p>
+          <p>{p1.risk.productionGate}</p>
+        </div>
       </div>
       <figure className="p1-risk-media">
         <img
