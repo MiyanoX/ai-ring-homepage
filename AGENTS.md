@@ -20,3 +20,18 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - Public copy may show the supplied design targets `6 mm`, `US 6+`, titanium inner ring, and `¥59,500 起` as concept/target information. Do not publish a `世界最细` claim until claim clearance is complete.
 - Trust content should introduce specific roles and responsibilities (including the supplied Tokyo University female-health-design participation) and mark names, credentials, validation results, and final specifications as pending disclosure when evidence is not yet available.
 - Purchase UI must show Standard / design options, finishes, engraving, and a distinct Gift entry with an NFC message-card path. The prototype purchase/waitlist flow remains local-only and must not imply a live order or reservation service.
+
+开发任务发布收尾
+
+当开发实现与验证完成后，只需向用户询问一次：
+
+> 是否执行完整发布收尾（合并 main、提交并推送、删除当前开发分支、部署）？
+
+只有在用户明确确认后，才直接连续完成以下操作，不再逐项询问：
+
+1. 将当前开发分支合并到 `main`。
+2. 提交本任务内尚未提交的预期改动，并推送 `main`。
+3. 删除已合并的本地开发分支；若远程同名分支存在，也一并删除。
+4. 按仓库既定顺序执行所需的生产部署，并报告部署结果。
+
+不得把其他任务或用户未提交的改动混入本次提交；生产 migration、数据写入或其他未包含在上述发布收尾中的高风险操作仍需单独确认。
