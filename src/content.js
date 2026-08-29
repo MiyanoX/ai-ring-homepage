@@ -64,7 +64,7 @@ export const pageContentByLocale = {
     seo: {
       htmlLang: "en",
       hreflang: "en",
-      title: "ELARA One | Know your rhythm.",
+      title: "ELARA One | Know your rhythm",
       description:
         "A quiet smart ring concept for understanding sleep, energy, and the rhythm of everyday life.",
     },

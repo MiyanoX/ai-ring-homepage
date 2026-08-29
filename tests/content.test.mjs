@@ -1,8 +1,13 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 import * as contentModule from "../src/content.js";
 
 const { pageContentByLocale } = contentModule;
+const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const indexHtml = fs.readFileSync(path.join(projectRoot, "index.html"), "utf8");
 
 const LOCALES = ["en", "zh", "ja"];
 const REQUIRED_KEYS = [
@@ -57,6 +62,20 @@ test("exposes exactly the three supported locale records", () => {
   for (const locale of LOCALES) {
     assert.deepEqual(Object.keys(pageContentByLocale[locale]).sort(), [...REQUIRED_KEYS].sort());
   }
+});
+
+test("keeps every page SEO title free of trailing full stops", () => {
+  for (const locale of LOCALES) {
+    assert.doesNotMatch(
+      pageContentByLocale[locale].seo.title,
+      /[.。]$/,
+      `${locale} SEO title must not end with a full stop`,
+    );
+  }
+
+  const staticTitle = indexHtml.match(/<title>([^<]*)<\/title>/)?.[1];
+  assert.ok(staticTitle, "index.html must define a title");
+  assert.doesNotMatch(staticTitle, /[.。]$/, "index.html title must not end with a full stop");
 });
 
 test("provides the same localized P1 Base Ring contract for every locale", () => {
