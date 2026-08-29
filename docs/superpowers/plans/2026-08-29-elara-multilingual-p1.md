@@ -192,10 +192,10 @@ Replace all three locale desktop/mobile QA captures, visually inspect them, and 
 
 Update `design-qa.md` so the current verification section states that all three locales use the shared P1 page and removes claims that English/Chinese retain the legacy compositions.
 
-- [ ] **Step 5: Re-run verification after documentation/build updates**
+- [x] **Step 5: Re-run verification after documentation/build updates**
 
 Run `npm test`, `npm run build`, `npm run test:sites`, and `git diff --check` again after the final source/docs/artifact changes.
 
-- [ ] **Step 6: Write the final Issue #17 update**
+- [x] **Step 6: Write the final Issue #17 update**
 
 Record changed paths, test/build/Sites/browser evidence, commit and PR status, deployment as not executed, and remaining product/legal/local-only risks. Ask the user once whether to perform the complete release closeout (merge main, commit/push, branch cleanup, deploy).
