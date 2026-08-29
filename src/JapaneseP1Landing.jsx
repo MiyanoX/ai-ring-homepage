@@ -105,18 +105,18 @@ function P1Hero({ p1, onPreview }) {
         <h1 id="p1-hero-title">{p1.hero.title}</h1>
         <p className="p1-hero-english">{p1.hero.englishTitle}</p>
         <p className="p1-hero-description">{p1.hero.description}</p>
-        <div className="p1-hero-facts" aria-label="P1 Base Ring の要点">
+        <div className="p1-hero-facts" aria-label={p1.hero.factLabels.ariaLabel}>
           <span>
             <strong>{p1.hero.width}</strong>
-            <small>幅</small>
+            <small>{p1.hero.factLabels.width}</small>
           </span>
           <span>
             <strong>{p1.hero.innerRing}</strong>
-            <small>内側</small>
+            <small>{p1.hero.factLabels.innerRing}</small>
           </span>
           <span>
             <strong>{p1.hero.price}</strong>
-            <small>コンセプト価格</small>
+            <small>{p1.hero.factLabels.price}</small>
           </span>
         </div>
         <p className="p1-edition-chip">{p1.hero.edition}</p>
@@ -267,15 +267,15 @@ function P1Risk({ p1 }) {
         <div className="p1-risk-flags">
           <span>
             <strong>{p1.risk.sizeRange}</strong>
-            <small>対応サイズ</small>
+            <small>{p1.risk.flagLabels.size}</small>
           </span>
           <span className={p1.risk.depositPending ? "is-pending" : ""}>
             <strong>{p1.risk.depositLabel}</strong>
-            <small>予約金</small>
+            <small>{p1.risk.flagLabels.deposit}</small>
           </span>
           <span className={p1.risk.deliveryPending ? "is-pending" : ""}>
             <strong>{p1.risk.deliveryLabel}</strong>
-            <small>お届け</small>
+            <small>{p1.risk.flagLabels.delivery}</small>
           </span>
         </div>
         <ol className="p1-risk-steps">
@@ -383,7 +383,9 @@ function P1Purchase({ p1, selectedFinish, setSelectedFinish, engraving, setEngra
           />
           <small>{p1.purchase.engravingHint}</small>
           <span className="p1-engraving-status">
-            {summary.engraving ? `「${summary.engraving}」を刻印（無料）` : "無料刻印を追加できます"}
+            {summary.engraving
+              ? `${p1.purchase.engravingStatus.withValuePrefix}${summary.engraving}${p1.purchase.engravingStatus.withValueSuffix}`
+              : p1.purchase.engravingStatus.empty}
           </span>
         </label>
         <div className="p1-purchase-actions">
@@ -409,7 +411,7 @@ function P1Footer({ content }) {
   );
 }
 
-export function JapaneseP1Landing({
+export function P1Landing({
   content,
   currentHash,
   locale,
@@ -460,7 +462,7 @@ export function JapaneseP1Landing({
           setEngraving={setEngraving}
           onPreview={onPreview}
         />
-        <PreviewForm content={previewContent} inputRef={previewInputRef} variant="ja-p1" />
+        <PreviewForm content={previewContent} inputRef={previewInputRef} variant="p1" />
       </main>
       <div className="p1-sticky-cta">
         <span>{p1.purchase.stickyCta}</span>

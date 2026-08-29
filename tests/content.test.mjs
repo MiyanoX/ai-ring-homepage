@@ -16,7 +16,30 @@ const REQUIRED_KEYS = [
   "finishes",
   "preview",
   "footer",
+  "p1",
 ];
+
+const P1_KEYS = [
+  "nav",
+  "hero",
+  "proof",
+  "health",
+  "edition",
+  "finishes",
+  "risk",
+  "specs",
+  "purchase",
+];
+
+const P1_FINISH_IDS = [
+  "matte-black",
+  "mirror-silver",
+  "matte-silver",
+  "mirror-gold",
+  "mirror-rose-gold",
+];
+
+const P1_NAV_HREFS = ["#proof", "#health", "#edition", "#finishes", "#purchase"];
 
 function collectStrings(value, path = "content") {
   if (typeof value === "string") return [{ path, value }];
@@ -32,82 +55,45 @@ function collectStrings(value, path = "content") {
 test("exposes exactly the three supported locale records", () => {
   assert.deepEqual(Object.keys(pageContentByLocale).sort(), [...LOCALES].sort());
   for (const locale of LOCALES) {
-    const expectedKeys =
-      locale === "zh"
-        ? [...REQUIRED_KEYS, "landing"]
-        : locale === "ja"
-          ? [...REQUIRED_KEYS, "p1"]
-          : REQUIRED_KEYS;
-    assert.deepEqual(Object.keys(pageContentByLocale[locale]).sort(), [...expectedKeys].sort());
+    assert.deepEqual(Object.keys(pageContentByLocale[locale]).sort(), [...REQUIRED_KEYS].sort());
   }
 });
 
-test("provides the complete Chinese six-block landing contract", () => {
-  const landing = pageContentByLocale.zh.landing;
+test("provides the same localized P1 Base Ring contract for every locale", () => {
+  for (const locale of LOCALES) {
+    const p1 = pageContentByLocale[locale].p1;
+    const p1Strings = collectStrings(p1).map(({ value }) => value).join(" ");
 
-  assert.deepEqual(Object.keys(landing), [
-    "nav",
-    "hero",
-    "design",
-    "technology",
-    "daily",
-    "trust",
-    "purchase",
-    "gift",
-  ]);
-  assert.equal(landing.purchase.price, "¥59,500 起");
-  assert.match(landing.design.specs.map((item) => item.value).join(" "), /6 mm/);
-  assert.match(landing.design.specs.map((item) => item.value).join(" "), /US 6\+/);
-  assert.ok(landing.gift.nfcTitle);
-
-  for (const image of [landing.hero.image, landing.technology.image, landing.trust.image, landing.gift.image]) {
-    assert.ok(image.src.startsWith("/assets/elara/"));
-    assert.ok(image.alt.trim());
+    assert.ok(p1, `${locale} P1 content must exist`);
+    assert.deepEqual(Object.keys(p1), P1_KEYS);
+    assert.deepEqual(p1.nav.map((item) => item.href), P1_NAV_HREFS);
+    assert.equal(p1.hero.width, "6.0 mm");
+    assert.match(p1.hero.innerRing, /Titanium|titanium|钛|チタン/);
+    assert.match(p1.hero.price, /¥34,800/);
+    assert.match(p1.hero.edition, /First Edition/);
+    assert.deepEqual(p1.finishes.options.map((option) => option.id), P1_FINISH_IDS);
+    assert.equal(p1.risk.sizeRange, "US 5–12");
+    assert.equal(p1.risk.depositPending, true);
+    assert.equal(p1.risk.deliveryPending, true);
+    assert.match(p1.purchase.localOnlyNote, /local|概念|ローカル|本地/i);
+    assert.doesNotMatch(p1Strings, /world's thinnest|世界最細|世界最薄|No\.?1|clinical|临床|臨床|medical effect|医疗效果|治療|診断/i);
   }
 });
 
-test("keeps the Chinese landing content exclusive to the Chinese record", () => {
-  assert.equal("landing" in pageContentByLocale.en, false);
-  assert.equal("landing" in pageContentByLocale.ja, false);
+test("keeps P1 content localized while retaining shared facts", () => {
+  for (const locale of LOCALES) {
+    assert.ok(pageContentByLocale[locale].p1, `${locale} P1 content must exist before checking localization`);
+  }
+
+  assert.match(pageContentByLocale.en.p1.hero.title, /ring/i);
+  assert.match(pageContentByLocale.zh.p1.hero.title, /指环|戒指/);
+  assert.match(pageContentByLocale.ja.p1.hero.title, /リング/);
+  assert.notEqual(pageContentByLocale.en.p1.hero.title, pageContentByLocale.zh.p1.hero.title);
+  assert.notEqual(pageContentByLocale.zh.p1.hero.title, pageContentByLocale.ja.p1.hero.title);
 });
 
-test("provides the Japanese P1 Base Ring content contract", () => {
-  const p1 = pageContentByLocale.ja.p1;
-
-  assert.ok(p1, "Japanese P1 content must exist");
-  assert.deepEqual(Object.keys(p1), [
-    "nav",
-    "hero",
-    "proof",
-    "health",
-    "edition",
-    "finishes",
-    "risk",
-    "specs",
-    "purchase",
-  ]);
-  assert.equal(p1.hero.price, "¥34,800（税込）");
-  assert.equal(p1.hero.width, "6.0 mm");
-  assert.equal(p1.hero.innerRing, "チタン内リング");
-  assert.equal(p1.hero.edition, "First Edition｜無料刻印");
-  assert.deepEqual(
-    p1.finishes.options.map((option) => option.id),
-    ["matte-black", "mirror-silver", "matte-silver", "mirror-gold", "mirror-rose-gold"],
-  );
-  assert.equal(p1.risk.sizeRange, "US 5–12");
-  assert.equal(p1.risk.depositPending, true);
-  assert.equal(p1.risk.deliveryPending, true);
-  assert.match(p1.purchase.localOnlyNote, /ローカル|概念/);
-});
-
-test("keeps P1 claims honest and Japanese content independent", () => {
-  const p1 = pageContentByLocale.ja.p1;
-  const p1Strings = collectStrings(p1).map(({ value }) => value).join(" ");
-
-  assert.doesNotMatch(p1Strings, /世界一|世界最細|No\.?1|臨床|治療|診断/);
-  assert.match(p1Strings, /コンセプト|未定|確認中|予定/);
-  assert.equal("p1" in pageContentByLocale.en, false);
-  assert.equal("p1" in pageContentByLocale.zh, false);
+test("does not expose the retired Chinese landing contract", () => {
+  assert.equal("landing" in pageContentByLocale.zh, false);
 });
 
 
@@ -116,15 +102,14 @@ test("does not export the legacy standalone pageContent object", () => {
 });
 
 test("keeps navigation and section anchors identical across locales", () => {
-  const first = pageContentByLocale.en;
+  const first = pageContentByLocale.en.p1;
+  assert.ok(first, "English P1 content must exist before comparing navigation");
+
   for (const locale of LOCALES.slice(1)) {
+    assert.ok(pageContentByLocale[locale].p1, `${locale} P1 content must exist before comparing navigation`);
     assert.deepEqual(
-      pageContentByLocale[locale].nav.map((item) => item.href),
+      pageContentByLocale[locale].p1.nav.map((item) => item.href),
       first.nav.map((item) => item.href),
-    );
-    assert.deepEqual(
-      pageContentByLocale[locale].rituals.items.map((item) => item.index),
-      first.rituals.items.map((item) => item.index),
     );
   }
 });
@@ -142,6 +127,26 @@ test("keeps the same image sources while translating alternative text", () => {
     const images = imageRecords(pageContentByLocale[locale]);
     assert.deepEqual(images.map((image) => image.src), englishImages.map((image) => image.src));
     for (const image of images) assert.ok(image.alt.trim(), `${locale} image alt must not be empty`);
+  }
+});
+
+test("keeps the P1 image slots shared while translating alternative text", () => {
+  const imageRecords = (p1) => [
+    p1.hero.image,
+    p1.proof.image,
+    p1.health.image,
+    p1.edition.image,
+    p1.finishes.image,
+    p1.risk.image,
+  ];
+  const japaneseImages = imageRecords(pageContentByLocale.ja.p1);
+  assert.ok(japaneseImages.every(Boolean), "Japanese P1 image slots must exist before comparison");
+
+  for (const locale of LOCALES) {
+    assert.ok(pageContentByLocale[locale].p1, `${locale} P1 content must exist before image comparison`);
+    const images = imageRecords(pageContentByLocale[locale].p1);
+    assert.deepEqual(images.map((image) => image.src), japaneseImages.map((image) => image.src));
+    for (const image of images) assert.ok(image.alt.trim(), `${locale} P1 image alt must not be empty`);
   }
 });
 

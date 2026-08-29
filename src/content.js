@@ -33,21 +33,6 @@ const FINISHES_IMAGE = {
   position: "50% 50%",
 };
 
-const TECHNOLOGY_IMAGE = {
-  src: "/assets/elara/technology-hands.jpg",
-  position: "68% 50%",
-};
-
-const TRUST_IMAGE = {
-  src: "/assets/elara/trust-prototype-hands.jpg",
-  position: "58% 50%",
-};
-
-const GIFT_IMAGE = {
-  src: "/assets/elara/gift-nfc-hands.jpg",
-  position: "60% 50%",
-};
-
 const P1_HERO_IMAGE = HERO_IMAGE;
 const P1_PROOF_IMAGE = {
   src: "/assets/elara/p1-finishes.png",
@@ -231,6 +216,214 @@ export const pageContentByLocale = {
         "ELARA One is a concept product, not a medical device. This page is for brand and product design presentation only.",
       legal: "Concept study · Tokyo · 2026",
     },
+    p1: {
+      nav: [
+        { label: "The product", href: "#proof" },
+        { label: "Quiet technology", href: "#health" },
+        { label: "First Edition", href: "#edition" },
+        { label: "Finishes", href: "#finishes" },
+        { label: "Reserve", href: "#purchase" },
+      ],
+      hero: {
+        eyebrow: "ELARA One · P1 Base Ring",
+        title: "A quiet smart ring made for every day.",
+        englishTitle: "It starts with a ring.",
+        description:
+          "A ring you want to wear every day. Inside its slim silhouette and considered finish, we are exploring technology that quietly observes the shape of your day.",
+        width: "6.0 mm",
+        innerRing: "Titanium inner ring",
+        edition: "First Edition | Free inner engraving",
+        price: "¥34,800 (tax included)",
+        priceNote: "P1 concept price · 5 finishes / US 5–12",
+        primaryAction: "Reserve",
+        secondaryAction: "See the product",
+        localOnlyNote:
+          "This is currently a preview of the concept reservation flow. No real order or payment is created.",
+        factLabels: {
+          ariaLabel: "P1 Base Ring highlights",
+          width: "Width",
+          innerRing: "Inner ring",
+          price: "Concept price",
+        },
+        image: withImage(
+          P1_HERO_IMAGE,
+          "A hand wearing the champagne-gold ELARA One ring in morning light",
+        ),
+      },
+      proof: {
+        eyebrow: "01 / Product proof",
+        title: "Make 6 mm and a titanium inner ring more than numbers.",
+        body:
+          "The slimness on your finger, the material on the inside, and the light across the surface. Because this is something you wear every day, we turn specifications into a feeling you can picture.",
+        items: [
+          {
+            label: "PROPORTION",
+            title: "6.0 mm wide",
+            copy: "A slim profile that sits naturally beside the jewelry you already wear.",
+          },
+          {
+            label: "INNER RING",
+            title: "Titanium inner ring",
+            copy: "Titanium is used on the inner ring that touches the skin; the outer finish remains clearly separate.",
+          },
+          {
+            label: "FINISH",
+            title: "Five finishes",
+            copy: "Choose from matte and mirror surfaces in black, silver, gold, and rose-gold tones.",
+          },
+        ],
+        image: withImage(
+          P1_PROOF_IMAGE,
+          "A product view of ELARA One rings in different finishes showing their slim profiles",
+        ),
+      },
+      health: {
+        eyebrow: "02 / Quiet technology",
+        title: "Progress means adapting to you, not asking you to adapt to a machine.",
+        body:
+          "Optical sensing and gentle vibration are there to avoid interrupting the life of the person wearing the ring. Complexity stays inside; only the insight you need returns to your day.",
+        capabilities: [
+          {
+            label: "SENSING",
+            title: "Tri-color PPG",
+            copy: "Optical sensing for understanding body rhythms. Public specifications will be updated after review.",
+          },
+          {
+            label: "RESPONSE",
+            title: "A gentle vibration",
+            copy: "A small signal for the moments that need it, instead of sending you to another screen.",
+          },
+          {
+            label: "ENCLOSURE",
+            title: "Contained in 6 mm",
+            copy: "Turning the constraints of miniaturization into a shape that feels natural to wear every day.",
+          },
+        ],
+        disclosure:
+          "Health-related functions and final specifications are under review. The app image on this page is a concept display, not a tool for medical decisions.",
+        image: withImage(
+          P1_HEALTH_IMAGE,
+          "An ELARA app concept screen and ring on a stone surface",
+        ),
+      },
+      edition: {
+        eyebrow: "03 / First Edition",
+        title: "Your words, inside the first one.",
+        body:
+          "P1 reservation participants can add engraving to the inside of the first ring delivered. It is not a discount; it is a way to keep the reason you wear it in your own words.",
+        examples: ["Your initials", "A day to begin", "A few words"],
+        image: withImage(
+          P1_EDITION_IMAGE,
+          "A hand showing the concept of engraving inside an ELARA One ring",
+        ),
+        disclosure:
+          "Character count, supported characters, and the confirmation timing will be finalized after the production specification is reviewed.",
+      },
+      finishes: {
+        eyebrow: "04 / Choose your finish",
+        title: "Choose a finish for the way you already live.",
+        body:
+          "Compare five finishes under the same conditions and choose the one that belongs with your clothes and your hands. Every finish is the same P1 concept price.",
+        options: [
+          { id: "matte-black", name: "Matte Black", englishName: "Soft matte black" },
+          { id: "mirror-silver", name: "Mirror Silver", englishName: "Polished silver" },
+          { id: "matte-silver", name: "Matte Silver", englishName: "Soft silver" },
+          { id: "mirror-gold", name: "Mirror Gold", englishName: "Polished gold" },
+          { id: "mirror-rose-gold", name: "Mirror Rose Gold", englishName: "Polished rose gold" },
+        ],
+        selectionNote: "Five finishes · same price · Japan domestic shipping included",
+        image: withImage(
+          P1_PROOF_IMAGE,
+          "A concept product view comparing five ELARA One finishes",
+        ),
+      },
+      risk: {
+        eyebrow: "05 / Sizing & delivery",
+        title: "Choose your size after trying it.",
+        body:
+          "You do not need to guess your ring size at the start. A Sizing Kit is planned after reservation so the final size can be confirmed from the fit.",
+        sizeRange: "US 5–12",
+        sizeStatus: "Confirmed after the Sizing Kit",
+        depositPending: true,
+        depositLabel: "Reservation deposit: under review (candidate ¥3,000)",
+        deliveryPending: true,
+        deliveryLabel: "Delivery timing: to be shared after the production plan is confirmed",
+        flagLabels: {
+          size: "Available sizes",
+          deposit: "Reservation deposit",
+          delivery: "Delivery",
+        },
+        steps: [
+          "Choose the Base Ring and finish",
+          "Pay the refundable reservation deposit",
+          "Try the ring with the Sizing Kit",
+          "Confirm the final size and engraving",
+          "Receive the production plan and delivery timing",
+        ],
+        refund:
+          "A full refund is available before production formally begins. If the combination needs adjustment, you can choose to wait, change the finish, or receive a refund.",
+        disclosure:
+          "The reservation deposit, refund terms, and delivery timing are still being confirmed. Reservation cannot be completed before those terms are final.",
+        operator: "Operator: public details under review",
+        privacy:
+          "This local preview does not send or save email addresses or selections. Personal-data handling will be stated before any real service is connected.",
+        productionGate:
+          "Real reservations will not open until the deposit, refund terms, delivery timing, and operator disclosure are confirmed.",
+        image: withImage(
+          P1_RISK_IMAGE,
+          "A hand checking ring size with a Sizing Kit and several sample rings",
+        ),
+      },
+      specs: {
+        eyebrow: "06 / Specs & FAQ",
+        title: "The details worth confirming.",
+        items: [
+          { label: "Width", value: "6.0 mm (target)" },
+          { label: "Inner ring", value: "Titanium inner ring" },
+          { label: "Size", value: "US 5–12" },
+          { label: "Price", value: "¥34,800 (tax included)" },
+          { label: "Finish", value: "Five finishes · same price" },
+        ],
+        faq: [
+          {
+            question: "When is the final size chosen?",
+            answer: "After reservation, you will try the Sizing Kit and confirm the size from the fit. You do not need to finalize a size at the first step.",
+          },
+          {
+            question: "How much is the reservation deposit?",
+            answer: "The candidate amount is ¥3,000, but the final amount will be published after the operating conditions are confirmed.",
+          },
+          {
+            question: "Will the product arrive right away?",
+            answer: "This is currently a concept stage. Official guidance will follow after the production plan and delivery timing are confirmed.",
+          },
+        ],
+      },
+      purchase: {
+        eyebrow: "07 / Reserve",
+        title: "Make the P1 Base Ring your first one.",
+        body:
+          "Choose a finish and imagine your engraving. Decide the size after the Sizing Kit. This is currently a local preview for understanding the flow.",
+        productName: "ELARA One · Base Ring",
+        price: "¥34,800 (tax included)",
+        priceNote: "Five finishes · same price · Japan domestic shipping included",
+        finishLabel: "Finish",
+        sizeLabel: "Size",
+        sizeNote: "US 5–12 · final size confirmed after the Sizing Kit",
+        engravingLabel: "First Edition free engraving",
+        engravingPlaceholder: "Enter engraving (concept preview)",
+        engravingHint: "Character count and supported characters are under review",
+        engravingStatus: {
+          withValuePrefix: "Engraving “",
+          withValueSuffix: "” (free)",
+          empty: "Free engraving can be added",
+        },
+        submitLabel: "Try the reservation flow",
+        localOnlyNote:
+          "Local preview only. No email address or selection is sent or saved here, and no real order is created.",
+        stickyCta: "¥34,800 · First Edition free engraving · Reserve",
+      },
+    },
   },
   zh: {
     seo: {
@@ -388,196 +581,207 @@ export const pageContentByLocale = {
         "ELARA One 为概念产品，不是医疗设备。本页内容仅用于品牌与产品设计展示。",
       legal: "概念研究 · 东京 · 2026",
     },
-    landing: {
+    p1: {
       nav: [
-        { label: "设计", href: "#design" },
-        { label: "科技之美", href: "#technology" },
-        { label: "每日知道", href: "#daily" },
-        { label: "为什么相信", href: "#trust" },
-        { label: "购买", href: "#buy" },
+        { label: "了解产品", href: "#proof" },
+        { label: "安静的科技", href: "#health" },
+        { label: "First Edition", href: "#edition" },
+        { label: "选择材质", href: "#finishes" },
+        { label: "预约", href: "#purchase" },
       ],
       hero: {
-        eyebrow: "ELARA One · 智能戒指概念",
-        title: "一枚属于你的智能戒指。",
-        englishTitle: "It starts as a ring.",
+        eyebrow: "ELARA One · P1 Base Ring",
+        title: "一枚适合每天佩戴的安静智能指环。",
+        englishTitle: "It starts with a ring.",
         description:
-          "先是一枚好看的戒指。然后，它在你不必分心的时候，安静地为你留意身体与生活的节律。",
-        primaryAction: "预约私享体验",
-        secondaryAction: "先看看它如何融入生活",
-        ownershipLine: "为日常而设计 · 概念体验",
+          "先是一枚你愿意每天戴着的指环。在细窄的轮廓与克制的材质里，我们探索一种安静留意你一天节奏的技术。",
+        width: "6.0 mm",
+        innerRing: "钛内圈",
+        edition: "First Edition｜首枚免费刻字",
+        price: "¥34,800（含税）",
+        priceNote: "P1 概念价格 · 5 种材质 / US 5–12",
+        primaryAction: "预约",
+        secondaryAction: "查看产品",
+        localOnlyNote: "当前为概念预约流程预览，不会创建真实订单或支付。",
+        factLabels: {
+          ariaLabel: "P1 Base Ring 核心信息",
+          width: "宽度",
+          innerRing: "内圈",
+          price: "概念价格",
+        },
         image: withImage(
-          HERO_IMAGE,
-          "都市女性佩戴香槟金 ELARA One 戒指、手指轻触亚麻衣袖的近景",
+          P1_HERO_IMAGE,
+          "晨光中佩戴香槟金 ELARA One 指环的手部近景",
         ),
       },
-      design: {
-        eyebrow: "01 / 设计",
-        title: "它首先是一枚戒指。",
+      proof: {
+        eyebrow: "01 / 产品证明",
+        title: "让 6 mm 与钛内圈，不止是参数。",
         body:
-          "素圈与轻设计，两条可以融入日常的线。6 mm 的目标宽度、US 6+ 的尺寸范围与钛合金内圈，让它从通勤到晚餐都不必换一种生活方式。",
-        productLines: [
-          {
-            id: "standard",
-            label: "Standard",
-            name: "素圈",
-            copy: "安静、克制，像你一直在戴的那一枚。",
-          },
-          {
-            id: "design",
-            label: "Design",
-            name: "设计款",
-            copy: "多一点轮廓感，让戒指成为造型的一部分。",
-          },
-        ],
-        specs: [
-          { label: "目标宽度", value: "6 mm" },
-          { label: "适配尺寸", value: "US 6+" },
-          { label: "内圈材质", value: "钛合金" },
-          { label: "佩戴方式", value: "日常穿搭不违和" },
-        ],
-        finishOptions: [
-          { id: "champagne", name: "香槟金", englishName: "Champagne" },
-          { id: "silver", name: "月光银", englishName: "Moon Silver" },
-          { id: "plum", name: "深梅紫", englishName: "Deep Plum" },
-        ],
-        price: "¥59,500 起",
-        priceNote: "概念参考售价",
-        image: withImage(
-          FINISHES_IMAGE,
-          "香槟金、月光银与深梅紫三种 ELARA One 戒指材质并列展示",
-        ),
-      },
-      technology: {
-        eyebrow: "02 / 科技之美",
-        title: "真正先进的科技，不需要你适应它。它只负责适应你。",
-        body:
-          "单组三色光 PPG、振动马达与必要的感知能力，被藏进 6 mm 的日常戒指里。你不需要学习一套新的生活方式，好的技术会安静地来到你的生活里。",
-        ringLabel: "6 mm 内部",
-        ringNote: "传感与佩戴感，被收进一枚日常戒指。",
-        capabilities: [
-          {
-            index: "01",
-            label: "感知",
-            title: "单组三色光 PPG",
-            copy: "以克制的光学结构，持续理解身体节律的变化。",
-          },
-          {
-            index: "02",
-            label: "回应",
-            title: "振动马达",
-            copy: "需要提醒时轻轻回应，而不是把你拉回另一块屏幕。",
-          },
-          {
-            index: "03",
-            label: "藏入",
-            title: "6 mm 的容纳",
-            copy: "把复杂留在内部，把自然的佩戴感留给你。",
-          },
-        ],
-        image: withImage(
-          TECHNOLOGY_IMAGE,
-          "深梅紫光线中的手部近景，香槟金 ELARA One 戒指与内侧感知细节清晰可见",
-        ),
-      },
-      daily: {
-        eyebrow: "03 / 它每天为我知道什么",
-        title: "它替你留意那些，你自己没空留意的变化。",
-        body:
-          "不是把更多指标堆到你面前，而是在 App 里把压力、身体周期、活动与睡眠，整理成你今天真正用得上的理解。",
-        noteLabel: "今日的一句话",
-        note:
-          "今天适合把重要的事，放在精力最清楚的那一段时间里。其余的，留一点余地。",
+          "戴在指间的细、触碰皮肤的材质、表面接住光线的方式。因为它要陪你每天生活，我们希望把规格转化成可以想象的佩戴感。",
         items: [
           {
-            label: "压力",
-            question: "我现在是不是比自己以为的更紧绷？",
-            copy: "看见压力节奏，给自己一个及时停下来的理由。",
+            label: "PROPORTION",
+            title: "6.0 mm 宽度",
+            copy: "细窄的轮廓，即使与日常佩戴的首饰放在一起，也不会打扰你的风格。",
           },
           {
-            label: "月经 / 身体周期",
-            question: "身体正在经历怎样的阶段？",
-            copy: "把周期放回自己的生活语境里，不用用别人的节奏衡量自己。",
+            label: "INNER RING",
+            title: "钛内圈",
+            copy: "接触皮肤的内圈使用钛材质；外侧的表面处理保持独立并清楚说明。",
           },
           {
-            label: "活动",
-            question: "今天的身体，已经走了多远？",
-            copy: "理解活动量与能量之间的关系，而不是追逐一个数字。",
-          },
-          {
-            label: "睡眠",
-            question: "昨晚的休息，真的够了吗？",
-            copy: "从休息开始认识今天，再决定要把力气放在哪里。",
+            label: "FINISH",
+            title: "五种材质",
+            copy: "从哑光与镜面，到黑、银、金与玫瑰金色系，选择与你平时穿着相合的一色。",
           },
         ],
         image: withImage(
-          INSIGHT_IMAGE,
-          "石材台面上的 ELARA 应用概念界面，以克制的方式呈现每日节律洞察",
+          P1_PROOF_IMAGE,
+          "不同材质的 ELARA One 指环产品图，展示细窄的轮廓",
         ),
       },
-      trust: {
-        eyebrow: "04 / 为什么值得相信",
-        title: "让具体的人出现，讲她为什么参与。",
+      health: {
+        eyebrow: "02 / 安静的科技",
+        title: "先进，不是让你适应机器，而是让技术适应你。",
         body:
-          "一枚真正要陪你生活的戒指，不能只靠漂亮的渲染图。我们让女性健康体验、技术与验证工作分别被看见，也把仍在确认中的边界说清楚。",
-        cards: [
+          "光学感知与轻柔振动，是为了不打断佩戴者正在过的生活。把复杂留在内部，只把你当下需要的理解送回日常。",
+        capabilities: [
           {
-            index: "01",
-            label: "女性健康体验设计",
-            title: "东京大学女性科研人员参与其中",
-            copy: "参与女性健康体验与产品设计讨论，帮助我们从真实生活而不是抽象指标出发。",
+            label: "SENSING",
+            title: "三色光 PPG",
+            copy: "用于理解身体节律的光学感知。对外公开的规格将在确认后更新。",
           },
           {
-            index: "02",
-            label: "技术团队",
-            title: "让复杂的工程退到佩戴感之后",
-            copy: "围绕光学感知、低功耗与小型化结构，把技术约束转化为日常体验。",
+            label: "RESPONSE",
+            title: "轻轻回应的振动",
+            copy: "需要提醒时给出一个小小信号，而不是把你带回另一块屏幕。",
           },
           {
-            index: "03",
-            label: "验证方法",
-            title: "从真实样机开始验证",
-            copy: "通过样机、佩戴反馈与迭代记录，逐步确认体验与最终规格。",
+            label: "ENCLOSURE",
+            title: "收进 6 mm 之内",
+            copy: "把小型化的限制，转化为一枚每天都能自然佩戴的轮廓。",
           },
         ],
         disclosure:
-          "姓名、具体资历、验证数据与量产规格将在完成披露与验证后公开。当前页面展示的是概念阶段的产品方向。",
+          "健康相关功能与最终规格仍在确认中。本页 App 画面是概念展示，不用于医疗判断。",
         image: withImage(
-          TRUST_IMAGE,
-          "双手在桌面上整理 ELARA One 戒指样机、卡尺与设计记录本的验证现场",
+          P1_HEALTH_IMAGE,
+          "石材台面上的 ELARA 应用概念界面与指环",
         ),
+      },
+      edition: {
+        eyebrow: "03 / First Edition",
+        title: "把你的话，留在第一枚里。",
+        body:
+          "P1 预约用户可以为首枚交付的指环添加内圈刻字。它不是折扣，而是把你愿意佩戴它的理由，留在自己的话里。",
+        examples: ["你的姓名首字母", "一个开始的日子", "一句简短的话"],
+        image: withImage(
+          P1_EDITION_IMAGE,
+          "展示 ELARA One 指环内圈刻字概念的手部产品图",
+        ),
+        disclosure: "刻字字数、支持字符与确认时间将在生产规格完成审核后确定。",
+      },
+      finishes: {
+        eyebrow: "04 / 选择材质",
+        title: "为你已经拥有的生活，选一种表面。",
+        body:
+          "在相同条件下比较五种材质，选择与你的衣服和手部相处自然的一种。P1 概念阶段五种材质同价。",
+        options: [
+          { id: "matte-black", name: "哑光黑", englishName: "Soft matte black" },
+          { id: "mirror-silver", name: "镜面银", englishName: "Polished silver" },
+          { id: "matte-silver", name: "哑光银", englishName: "Soft silver" },
+          { id: "mirror-gold", name: "镜面金", englishName: "Polished gold" },
+          { id: "mirror-rose-gold", name: "镜面玫瑰金", englishName: "Polished rose gold" },
+        ],
+        selectionNote: "五种材质 · 同一价格 · 日本国内配送包含在内",
+        image: withImage(
+          P1_PROOF_IMAGE,
+          "比较五种 ELARA One 指环材质的概念产品图",
+        ),
+      },
+      risk: {
+        eyebrow: "05 / 尺寸与交付",
+        title: "先试戴，再决定尺寸。",
+        body:
+          "一开始不必猜自己的指环尺寸。计划在预约后寄出 Sizing Kit，根据试戴结果确认最终尺寸。",
+        sizeRange: "US 5–12",
+        sizeStatus: "Sizing Kit 后确认",
+        depositPending: true,
+        depositLabel: "预约金：仍在确认中（候选金额 ¥3,000）",
+        deliveryPending: true,
+        deliveryLabel: "交付时间：生产计划确认后说明",
+        flagLabels: {
+          size: "适配尺寸",
+          deposit: "预约金",
+          delivery: "交付",
+        },
+        steps: [
+          "选择 Base Ring 与材质",
+          "支付可退款的预约金",
+          "使用 Sizing Kit 试戴",
+          "确认最终尺寸与刻字",
+          "了解生产计划与交付时间",
+        ],
+        refund:
+          "正式进入生产前可全额退款。如果组合仍需调整，可以选择等待、更换材质或退款。",
+        disclosure:
+          "预约金、退款条件与交付时间仍在确认中。条件确定前无法完成真实预约。",
+        operator: "运营主体：公开信息仍在确认中",
+        privacy:
+          "本地预览不会发送或保存邮箱与选择内容。接入真实服务前会明确说明个人信息处理方式。",
+        productionGate: "在预约金、退款条件、交付时间与运营主体信息确认前，不会开启真实预约。",
+        image: withImage(
+          P1_RISK_IMAGE,
+          "使用 Sizing Kit 确认指环尺寸的手部与多枚试戴指环",
+        ),
+      },
+      specs: {
+        eyebrow: "06 / 参数与 FAQ",
+        title: "最后，确认这些细节。",
+        items: [
+          { label: "宽度", value: "6.0 mm（目标值）" },
+          { label: "内圈", value: "钛内圈" },
+          { label: "尺寸", value: "US 5–12" },
+          { label: "价格", value: "¥34,800（含税）" },
+          { label: "材质", value: "五种 · 同价" },
+        ],
+        faq: [
+          {
+            question: "什么时候确定最终尺寸？",
+            answer: "预约后使用 Sizing Kit 试戴，再根据适配度确认尺寸。第一步不需要先确定尺寸。",
+          },
+          {
+            question: "预约金是多少？",
+            answer: "候选金额为 ¥3,000，正式金额将在运营条件确认后更新到页面。",
+          },
+          {
+            question: "产品会马上送到吗？",
+            answer: "当前仍处于概念阶段。生产计划与交付时间确认后，我们会发布正式说明。",
+          },
+        ],
       },
       purchase: {
-        eyebrow: "05 / 购买",
-        title: "选一枚，成为你的日常。",
-        body:
-          "从 Standard 素圈或 Design 设计款开始，选择更像你的颜色。刻字与 Gift 路径，也都为重要的人留出位置。",
-        lineLabel: "款式",
-        finishLabel: "颜色",
-        engravingLabel: "刻字（可选）",
-        engravingPlaceholder: "留一句只属于你的话",
-        engravingHint: "最多 18 个字符 · 概念预览",
-        price: "¥59,500 起",
-        priceNote: "概念参考售价",
-        submitLabel: "预约体验",
-        giftLabel: "打开 Gift 路径",
-      },
-      gift: {
-        eyebrow: "Gift / 送给她",
-        title: "把一句心意，放进她每天都会戴的东西里。",
-        body:
-          "Gift 不是另一种包装，而是一条完整的送礼路径：选好戒指，写下心意，把 NFC 心意卡放进盒中，让她在打开时遇见这句话。",
-        nfcTitle: "NFC 心意卡，让礼物继续说话。",
-        nfcBody:
-          "收礼人轻触卡片，即可打开你为她准备的文字与体验入口。当前为概念路径，实际 NFC 内容与服务将在产品确认后接入。",
-        steps: ["选择款式与颜色", "写下刻字或心意", "放入 NFC 心意卡", "交给重要的她"],
-        openLabel: "查看完整送礼路径",
-        closeLabel: "收起 Gift 路径",
-        previewLabel: "预览心意卡",
-        note: "Gift、NFC 与刻字流程目前均为本地概念预览，不会创建真实订单。",
-        image: withImage(
-          GIFT_IMAGE,
-          "双手把 ELARA One 戒指与 NFC 心意卡放入象牙色礼盒的送礼场景",
-        ),
+        eyebrow: "07 / 预约",
+        title: "让 P1 Base Ring 成为你的第一枚。",
+        body: "选择一种材质，想象你的刻字。尺寸在 Sizing Kit 后确定。当前只是帮助你理解流程的本地预览。",
+        productName: "ELARA One · Base Ring",
+        price: "¥34,800（含税）",
+        priceNote: "五种材质 · 同价 · 日本国内配送包含在内",
+        finishLabel: "材质",
+        sizeLabel: "尺寸",
+        sizeNote: "US 5–12 · 最终尺寸在 Sizing Kit 后确认",
+        engravingLabel: "First Edition 首枚免费刻字",
+        engravingPlaceholder: "输入刻字（概念预览）",
+        engravingHint: "字数与支持字符仍在确认中",
+        engravingStatus: {
+          withValuePrefix: "已加入刻字：「",
+          withValueSuffix: "」（免费）",
+          empty: "可添加免费刻字",
+        },
+        submitLabel: "试用预约流程",
+        localOnlyNote: "仅限本地预览。邮箱与选择内容不会在这里发送或保存，也不会创建真实订单。",
+        stickyCta: "¥34,800 · First Edition 首枚免费刻字 · 预约",
       },
     },
   },
@@ -761,6 +965,12 @@ export const pageContentByLocale = {
         secondaryAction: "商品を見る",
         localOnlyNote:
           "現在はコンセプト予約フローのプレビューです。実際の注文や決済は作成されません。",
+        factLabels: {
+          ariaLabel: "P1 Base Ring の要点",
+          width: "幅",
+          innerRing: "内側",
+          price: "コンセプト価格",
+        },
         image: withImage(
           P1_HERO_IMAGE,
           "朝の光のなかでシャンパンゴールドの ELARA One を着けた手元",
@@ -868,6 +1078,11 @@ export const pageContentByLocale = {
         depositLabel: "予約金：最終確認中（候補 ¥3,000）",
         deliveryPending: true,
         deliveryLabel: "お届け時期：生産計画の確認後にご案内",
+        flagLabels: {
+          size: "対応サイズ",
+          deposit: "予約金",
+          delivery: "お届け",
+        },
         steps: [
           "Base Ring と仕上げを選ぶ",
           "返金可能な予約金を支払う",
@@ -928,6 +1143,11 @@ export const pageContentByLocale = {
         engravingLabel: "First Edition 無料刻印",
         engravingPlaceholder: "刻印を入力（コンセプトプレビュー）",
         engravingHint: "文字数と対応文字は最終確認中",
+        engravingStatus: {
+          withValuePrefix: "「",
+          withValueSuffix: "」を刻印（無料）",
+          empty: "無料刻印を追加できます",
+        },
         submitLabel: "予約フローを試す",
         localOnlyNote:
           "ローカルプレビューのみ。ここではメールアドレスも選択内容も送信・保存されず、実際の注文は作成されません。",

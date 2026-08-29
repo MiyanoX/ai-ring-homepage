@@ -28,15 +28,17 @@ test("defines the smallest P1 funnel without carrying personal information", () 
   );
 });
 
-test("keeps the Japanese P1 page local-only while deposit and delivery remain pending", () => {
-  assert.equal(getP1ReservationMode(pageContentByLocale.ja.p1.risk), "local-only");
+test("keeps every localized P1 page local-only while deposit and delivery remain pending", () => {
+  for (const locale of ["en", "zh", "ja"]) {
+    assert.equal(getP1ReservationMode(pageContentByLocale[locale].p1.risk), "local-only");
+  }
   assert.equal(
     getP1ReservationMode({ depositPending: false, deliveryPending: false }),
     "production-ready",
   );
 });
 
-test("keeps the P1 preview declarative and free of client-side persistence", () => {
+test("keeps the shared P1 preview declarative and free of client-side persistence", () => {
   const pageSource = fs.readFileSync(path.join(process.cwd(), "src/JapaneseP1Landing.jsx"), "utf8");
   const previewSource = fs.readFileSync(path.join(process.cwd(), "src/PreviewForm.jsx"), "utf8");
 
@@ -45,5 +47,7 @@ test("keeps the P1 preview declarative and free of client-side persistence", () 
   assert.doesNotMatch(pageSource, /localStorage/);
   assert.doesNotMatch(previewSource, /fetch\s*\(/);
   assert.doesNotMatch(previewSource, /localStorage/);
-  assert.match(pageContentByLocale.ja.p1.hero.localOnlyNote, /実際の注文や決済は作成されません/);
+  for (const locale of ["en", "zh", "ja"]) {
+    assert.match(pageContentByLocale[locale].p1.hero.localOnlyNote, /order|订单|注文/i);
+  }
 });

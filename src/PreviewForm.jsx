@@ -57,7 +57,7 @@ export function PreviewForm({ content, inputRef, variant = "default" }) {
   return (
     <section
       id="preview"
-      className={`preview${variant === "zh" ? " zh-preview" : variant === "ja-p1" ? " p1-preview" : ""}`}
+      className={`preview${variant === "zh" ? " zh-preview" : variant === "p1" ? " p1-preview" : ""}`}
       aria-labelledby="preview-title"
     >
       <div className="preview-inner">
